@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import Form from "./components/Form/Form";
+import Table from "./components/Table/Table";
 
 function App() {
   const [userList, setUserList] = useState([]);
@@ -16,31 +18,14 @@ function App() {
       },
     ]);
   };
+
+  const deleteHandler = (id) => {
+    setUserList((prev) => [...prev].filter((item) => item.id !== id));
+  };
   return (
     <>
-      <form onSubmit={submitHandler} className="user-form">
-        <input type="text" name="userName" placeholder="enter your name" />
-        <input type="text" name="familyName" placeholder="enter your family" />
-        <button type="submit">Add user</button>
-      </form>
-      <table>
-        <thead>
-          <tr>
-            <th>no</th>
-            <th>name</th>
-            <th>family</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userList.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.userName}</td>
-              <td>{user.familyName}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Form submitHandler={submitHandler} />
+      <Table userList={userList} deleteHandler={deleteHandler} />
     </>
   );
 }
