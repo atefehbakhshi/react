@@ -1,0 +1,10 @@
+.navbar {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-item {
+  font-family: sans-serif;
+  color: rgb(61, 61, 132);
+  padding: 4px;
+}
